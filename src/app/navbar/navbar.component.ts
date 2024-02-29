@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../shared/interfaces/cliente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { Cliente } from '../shared/interfaces/cliente';
 })
 export class NavbarComponent implements  OnInit {
   lista_clientes : Cliente[]= [];
+  constructor(private router: Router) { }
   ngOnInit():void {
     this.getMarcas();
     
@@ -53,5 +55,8 @@ export class NavbarComponent implements  OnInit {
         observaciones: 'Cliente nuevo'
       }
     ];
+  }
+  selectCliente(cliente: String) {
+    this.router.navigate(['/inicio', cliente]);
   }
 }
